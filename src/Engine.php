@@ -10,13 +10,13 @@ class Engine
     const SEPARATOR = '/';
     const SUFFIX = '.php';
 
-    private $basedirs;
-    private $variableProvider;
-
     public static function loadFunctions()
     {
         require_once(__DIR__ . DIRECTORY_SEPARATOR . 'functions.php');
     }
+
+    private $basedirs;
+    private $variableProvider;
 
     public function __construct(array $basedirs, VariableProvider $variableProvider = null)
     {
@@ -33,7 +33,7 @@ class Engine
         return $output;
     }
 
-    public function resolve(string $template, array $variables) 
+    public function resolve(string $template, array $variables = null) 
     {
         return [
             $this->resolvePath($template), 
@@ -53,13 +53,14 @@ class Engine
         throw new \LogicException('template not found: '.$template);
     }
 
-    protected function resolveEnv(string $template, array $variables)
+    protected function resolveEnv(string $template, array $variables = null)
     {
-        // explicit-bindings > auto-bindings
-        $env = $this->getAutoBindings($template);
         if (is_null($variables)) {
             $variables = [];
         }
+        
+        $env = $this->getAutoBindings($template);
+        // explicit-bound variables precedes to auto-bound variables.
         return array_merge($env, $variables);
     }
 

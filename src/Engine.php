@@ -1,6 +1,6 @@
 <?php
 
-namespace tyam/bamboo;
+namespace tyam\bamboo;
 
 use ArrayObject;
 use ArrayAccess;
@@ -22,6 +22,7 @@ class Engine
     {
         $this->basedirs = $basedirs;
         $this->variableProvider = $variableProvider;
+    }
 
     public function render(string $template, array $variables = null, ArrayAccess $sections = null)
     {
@@ -41,10 +42,11 @@ class Engine
         ];
     }
 
-    protected function resolvePath(string $template)
+    public function resolvePath(string $template)
     {
         foreach ($this->basedirs as $basedir) {
-            $path = str_replace(self::SEPARATOR, DIRECTORY_SEPARATOR, $basedir . $template . self::SUFFIX);
+            $path = $basedir . self::SEPARATOR . $template . self::SUFFIX;
+            $path = str_replace(self::SEPARATOR, DIRECTORY_SEPARATOR, $path);
             if (file_exists($path)) {
                 return $path;
             }
@@ -53,7 +55,7 @@ class Engine
         throw new \LogicException('template not found: '.$template);
     }
 
-    protected function resolveEnv(string $template, array $variables = null)
+    public function resolveEnv(string $template, array $variables = null)
     {
         if (is_null($variables)) {
             $variables = [];

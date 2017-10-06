@@ -23,7 +23,7 @@ class Renderer
 
     public function render(string $template, array $variables = null): string
     {
-        list($path__, $env__) = $this->resolve($template, $variables);
+        list($path__, $env__) = call_user_func($this->resolve, $template, $variables);
         
         $renderer = $this;
         unset($template, $variables);
@@ -53,7 +53,7 @@ class Renderer
 
     public function content()
     {
-        echo $content;
+        echo $this->content;
     }
 
     public function section(string $name)
@@ -66,7 +66,7 @@ class Renderer
     {
         // You can specify the section name for sanity-check purpose.
         if (! is_null($name) && $this->sectionStack[0] != $name) {
-            throw new \LogicException('insane section name');
+            throw new \LogicException('unmatched end-section: ' . $name . ', expects: ' . $this->sectionStack[0]);
         }
 
         $output = ob_get_clean();

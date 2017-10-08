@@ -42,7 +42,7 @@ template side: /your/template/dirs/mytpl.php
 - A filename extension for template file is 'php'.
 
 
-Includes another template
+Including another template
 ------------------------------------------
 
 subject template: /your/template/dirs/mytpl.php

@@ -1,7 +1,7 @@
 {
     "name": "tyam/bamboo",
-    "description": "PHP template engine",
-    "keywords": [],
+    "description": "PHP template engine, which has variables-pulling facility.",
+    "keywords": ["PHP", "template engine"],
     "type": "library",
     "license": "MIT",
     "homepage": "https://github.com/tyam/bamboo",

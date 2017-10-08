@@ -23,6 +23,7 @@ PHP side
 // You must specify template base directory to bamboo engine.
 $basedirs = ['/your/template/dirs', '/come/here'];
 $engine = new \tyam\bamboo\Engine($basedirs);
+
 // Render template with variables. You get output string.
 $variables = ['title' => $this->getTitle(), 'content' => $this->getContent()];
 $output = $engine->render('mytpl', $variables);
@@ -188,12 +189,16 @@ The good example is e-mail tamplating.
 
 template: e-mail template
 ```php
+<?php /* Store Subject header in a section */ ?>
 <?php $renderer->section('Subject') ?>
 Confirmation instructions
 <?php $renderer->endsection() ?>
+
+<?php /* Store To header in a section */ ?>
 <?php $renderer->section('To') ?>
 <?= $user->getEmail() ?>
 <?php $renderer->endsection() ?>
+
 Thanks for signing up!
 To get started, click the link below and confirm your account.
 <?= $confirmationUrl ?>
@@ -202,9 +207,11 @@ To get started, click the link below and confirm your account.
 PHP side
 ```php
 $variables = ['user' => $user, 'confirmationUrl' => $confirmationUrl];
+
 // Pass an empty array for sections. 
 $sections = new \ArrayObject();
 $output = $engine->render('email/signup-confirm', $variables, $sections);
+
 // Now we get Subject header and To header from sections
 $mailer->setSubject($sections['Subject']);
 $mailer->setTo($sections['To']);

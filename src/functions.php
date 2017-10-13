@@ -5,7 +5,7 @@
  */
 function eh($s)
 {
-    return htmlspecialchars($x);
+    return htmlspecialchars($s);
 }
 
 /*

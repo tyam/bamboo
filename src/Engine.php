@@ -24,6 +24,16 @@ class Engine
         $this->variableProvider = $variableProvider;
     }
 
+    public function getVariableProvider()
+    {
+        return $this->variableProvider;
+    }
+
+    public function setVariableProvider(VariableProvider $variableProvider = null): void 
+    {
+        $this->variableProvider = $variableProvider;
+    }
+
     public function render(string $template, array $variables = null, ArrayAccess $sections = null)
     {
         if (is_null($sections)) {

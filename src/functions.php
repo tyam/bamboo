@@ -1,6 +1,9 @@
 <?php
+/**
+ * Helper/Escaper functions for templates.
+ */
 
-/*
+/**
  * Escape string for Html.
  */
 function eh($s)

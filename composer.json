@@ -11,9 +11,11 @@
         "email": "tyam001@gmail.com"
       }
     ],
+    "require": {
+      "php": "^7.0"
+    }, 
     "require-dev": {
-        "phpunit/phpunit": "^6.0", 
-        "mockery/mockery": "*"
+        "phpunit/phpunit": "^6.0"
     },
     "autoload": {
       "psr-4": {

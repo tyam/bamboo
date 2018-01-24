@@ -233,4 +233,4 @@ Other topics
 Lisence
 -----------------------------------------------
 
-MIT
+Bamboo is MIT licensed. See [LICENSE](LICENSE).

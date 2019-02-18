@@ -52,7 +52,7 @@ function checked($current, $candidate)
  */
 function selected($current, $candidate)
 {
-    if (''.$current === ''.$candiate) {
+    if (''.$current === ''.$candidate) {
         return 'selected';
     } else {
         return '';

@@ -32,7 +32,7 @@ class Engine
      * @param array $basedirs base directories for template files
      * @param VariableProvider|null $variableProvider 
      */
-    public function __construct(array $basedirs, VariableProvider $variableProvider = null)
+    public function __construct($basedirs, $variableProvider = null)
     {
         $this->basedirs = $basedirs;
         $this->variableProvider = $variableProvider;
@@ -54,7 +54,7 @@ class Engine
      * @param VariableProvider|null $variableProvider a variable provider to be set
      * @return void
      */
-    public function setVariableProvider(VariableProvider $variableProvider = null): void 
+    public function setVariableProvider($variableProvider = null) 
     {
         $this->variableProvider = $variableProvider;
     }
@@ -66,7 +66,7 @@ class Engine
      * @param array|null $variables template variables to be passed to template
      * @param ArrayAccess|null $sections array like object to hold section values
      */
-    public function render(string $template, array $variables = null, ArrayAccess $sections = null)
+    public function render($template, $variables = null, $sections = null)
     {
         if (is_null($sections)) {
             $sections = new ArrayObject();
@@ -79,7 +79,7 @@ class Engine
     /**
      * Resolves a template path and template variables. You should not call this method.
      */
-    public function resolve(string $template, array $variables = null) 
+    public function resolve($template, $variables = null) 
     {
         return [
             $this->resolvePath($template), 
@@ -90,7 +90,7 @@ class Engine
     /**
      * Resolves a template path. You should not call this method.
      */
-    public function resolvePath(string $template)
+    public function resolvePath($template)
     {
         foreach ($this->basedirs as $basedir) {
             $path = $basedir . self::SEPARATOR . $template . self::SUFFIX;
@@ -106,7 +106,7 @@ class Engine
     /**
      * Resolves a template variables. You should not call this method.
      */
-    public function resolveEnv(string $template, array $variables = null)
+    public function resolveEnv($template, $variables = null)
     {
         if (is_null($variables)) {
             $variables = [];
@@ -120,7 +120,7 @@ class Engine
     /**
      * Pulls template variables from variableProvider, if there.
      */
-    protected function getAutoBindings(string $template)
+    protected function getAutoBindings($template)
     {
         if (is_null($this->variableProvider)) {
             return [];

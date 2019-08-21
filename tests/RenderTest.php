@@ -2,7 +2,7 @@
 
 namespace tyam\bamboo\tests;
 
-use \PHPUnit\Framework\TestCase;
+use PHPUnit_Framework_TestCase as TestCase;
 use tyam\bamboo\Engine;
 use tyam\bamboo\VariableProvider;
 
@@ -13,7 +13,7 @@ class RenderTest extends TestCase implements VariableProvider
         __DIR__ . DIRECTORY_SEPARATOR . 'templates'
     ];
 
-    public function provideVariables(string $template): array
+    public function provideVariables($template)
     {
         if ($template == '1content') {
             return [

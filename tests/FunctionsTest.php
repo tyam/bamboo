@@ -2,7 +2,7 @@
 
 namespace tyam\bamboo\tests;
 
-use \PHPUnit\Framework\TestCase;
+use PHPUnit_Framework_TestCase as TestCase;
 use tyam\bamboo\Engine;
 
 class FunctionsTest extends TestCase

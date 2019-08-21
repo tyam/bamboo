@@ -2,7 +2,7 @@
 
 namespace tyam\bamboo\tests;
 
-use \PHPUnit\Framework\TestCase;
+use PHPUnit_Framework_TestCase as TestCase;
 use tyam\bamboo\Engine;
 use tyam\bamboo\VariableProvider;
 
@@ -48,7 +48,7 @@ class BasicTest extends TestCase implements VariableProvider
         $this->assertEquals($vars, $x);
     }
 
-    public function provideVariables(string $template): array
+    public function provideVariables($template)
     {
         return ['foo' => 10, 'baz' => '33'];
     }
@@ -70,7 +70,7 @@ class BasicTest extends TestCase implements VariableProvider
         $this->assertEquals($output, 'I\'m here.');
 
         $output = $engine->render('subdir/0nested', ['bar' => 'str', 'baz' => 'ing']);
-        $this->assertEquals($output, "DEF\r\nstr \r\ning");
+        $this->assertEquals($output, "DEF\nstr \ning");
     }
 
     public function testRender2()
@@ -78,6 +78,6 @@ class BasicTest extends TestCase implements VariableProvider
         $engine = new Engine($this->basedirs, $this);
 
         $output = $engine->render('subdir/0nested', ['foo' => 'str', 'bar' => 'ing']);
-        $this->assertEquals($output, "DEF\r\ning \r\n33");
+        $this->assertEquals($output, "DEF\ning \n33");
     }
 }

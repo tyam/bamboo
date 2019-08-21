@@ -13,5 +13,5 @@ interface VariableProvider
      * @param string $template path to the target template
      * @return array template variables
      */
-    public function provideVariables(string $template): array;
+    public function provideVariables($template);
 }

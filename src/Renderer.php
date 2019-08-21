@@ -26,7 +26,7 @@ class Renderer
      * @param ArrayAccess $sections array-like object which holds section values
      * @param string $content content from a child template, can be ''
      */
-    public function __construct(Callable $resolve, ArrayAccess $sections, string $content = '')
+    public function __construct($resolve, $sections, $content = '')
     {
         $this->resolve = $resolve;
         $this->sections = $sections;
@@ -45,7 +45,7 @@ class Renderer
      * @param array|null $variables template variables
      * @return string rendered content
      */
-    public function render(string $template, array $variables = null): string
+    public function render($template, $variables = null)
     {
         list($path__, $env__) = call_user_func($this->resolve, $template, $variables);
         
@@ -73,7 +73,7 @@ class Renderer
      * @param array|null $variables template variables for parent template
      * @return void
      */
-    public function wrap(string $template, array $variables = null): void 
+    public function wrap($template, $variables = null) 
     {
         if ($this->next) {
             // You can specify wrapper at most once.
@@ -87,7 +87,7 @@ class Renderer
      *
      * @return void
      */
-    public function content(): void
+    public function content()
     {
         echo $this->content;
     }
@@ -98,7 +98,7 @@ class Renderer
      * @param string $name the section name
      * @return void 
      */
-    public function section(string $name): void
+    public function section($name)
     {
         array_unshift($this->sectionStack, $name);
         ob_start();
@@ -113,7 +113,7 @@ class Renderer
      * @param string|null $name the section name
      * @return void
      */
-    public function endsection(string $name = null): void
+    public function endsection($name = null)
     {
         // You can specify the section name for sanity-check purpose.
         if (! is_null($name) && $this->sectionStack[0] != $name) {
@@ -131,7 +131,7 @@ class Renderer
      *
      * @param string $name section name to be output
      */
-    public function yield(string $name): void
+    public function extract($name)
     {
         if (empty($this->sections[$name])) {
             // do nothing
@@ -146,7 +146,7 @@ class Renderer
      * @param string $template path to the template
      * @param array|null $variables template variables 
      */
-    public function include(string $template, array $variables = null): void
+    public function embed($template, $variables = null)
     {
         $renderer = new Renderer($this->resolve, $this->sections);
         echo $renderer->render($template, $variables);
